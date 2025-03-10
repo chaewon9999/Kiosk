@@ -3,40 +3,14 @@ import java.util.List;
 
 public class Menu {
 
-    List<MenuItem> burgers = new ArrayList<>();
-    List<MenuItem> drinks = new ArrayList<>();
-    List<MenuItem> desserts = new ArrayList<>();
+    private List<MenuItem> menu = new ArrayList<>();
 
-    void addBurgers() {
-        burgers.add(new MenuItem(1, "ShackBurger ", 6.9, "토마토, 양상추, 쉑소스가 토핑된 치즈버거"));
-        burgers.add(new MenuItem(2, " SmokeShack ", 8.9, "베이컨, 체리 페퍼에 쉑소스가 토핑된 치즈버거"));
-        burgers.add(new MenuItem(3, "Cheeseburger", 6.9, "포테이토 번과 비프패티, 치즈가 토핑된 치즈버거"));
-        burgers.add(new MenuItem(4, "  Hamburger ", 5.4, "비프패티를 기반으로 야채가 들어간 기본버거"));
+    public void addMenu(MenuItem menuItem) {
+        menu.add(menuItem);
     }
 
-    void addDrinks() {
-        drinks.add(new MenuItem(1, "Lemonade", 4.5, "매장에서 직접 만드는 상큼한 레몬에이드"));
-        drinks.add(new MenuItem(2, "Iced Tea", 3.7, "직접 유기농 홍차를 우려낸 아이스티"));
-        drinks.add(new MenuItem(3, "  Coke  ", 2.9, "코카콜라"));
-        drinks.add(new MenuItem(4, " Sprite ", 4.5, "스프라이트"));
-    }
-
-    void addDessert() {
-        desserts.add(new MenuItem(1, "Shack Attack", 6.2, "초콜릿 커스터드에 세 가지 초콜릿 토핑"));
-        desserts.add(new MenuItem(2, "    Fries   ", 4.9, "바삭하고 담백한 크링클 컷 프라이"));
-        desserts.add(new MenuItem(3, "   Hot dog  ", 5.1, "비프 소시지와 포테이토 번을 사용한 핫도그"));
-    }
-
-    void initMenu() {
-        addBurgers();
-        addDrinks();
-        addDessert();
-    }
-
-    void getMenu(List<MenuItem> list) {
-        for (MenuItem menuItem : list) {
-            System.out.println(menuItem);
-        }
+    public List<MenuItem> getMenu() {
+        return menu;
     }
 }
 

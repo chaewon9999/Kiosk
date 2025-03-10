@@ -14,6 +14,18 @@ public class MenuItem {
 
     @Override
     public String toString() {
-        return id + ". | " + productName + " | ₩ | " + price + " | " + description;
+        return id + ". | " + productName + " | ₩ " + price + " | " + description;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public double getPrice() {
+        return price;
     }
 }
