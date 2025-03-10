@@ -4,8 +4,7 @@ import static java.awt.SystemColor.menu;
 
 public class Kiosk {
 
-    private String categoryName;
-    Map<String, Menu> category = new HashMap<>();
+    List<Menu> category = new ArrayList<>();
 
     void start() {
 
@@ -20,23 +19,20 @@ public class Kiosk {
                 System.out.println("프로그램을 종료합니다.");
                 break;
             }
-            showMenu(categoryNum);
 
 
         }
     }
 
-    void addCategory(String categoryName, Menu menu) {
-        this.categoryName = categoryName;
-        category.put(categoryName, menu);
+    void addCategory(Menu menu) {
+        category.add(menu);
     }
 
     void showCategory() {
         System.out.println("[MAIN MENU]");
 
-        List<String> keys = new ArrayList<>(category.keySet());
-        for (int i = 0; i < keys.size(); i++) {
-            System.out.println((i + 1) + ". " + keys.get(i));
+        for (int i = 0; i < category.size(); i++) {
+            System.out.println((i + 1) + ". " + category.get(i));
         }
 
         System.out.print("0. 종료\n입력: ");
@@ -55,11 +51,4 @@ public class Kiosk {
         return number;
     }
 
-    void showMenu(int index) {
-        List<String> keys = new ArrayList<>(category.keySet());
-
-        System.out.println("[" + keys.get(index - 1) + " MENU]");
-
-        System.out.println("0. 뒤로가기");
-    }
 }

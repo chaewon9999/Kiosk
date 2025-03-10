@@ -1,9 +1,9 @@
 public class KioskMain {
 
     public static void main(String[] args) {
-        Menu burgers = new Menu();
-        Menu drinks = new Menu();
-        Menu desserts = new Menu();
+        Menu burgers = new Menu("Burgers");
+        Menu drinks = new Menu("Drinks");
+        Menu desserts = new Menu("Desserts");
 
         burgers.addMenu(new MenuItem(1, "shackBurgur", 6.9, "토마토, 양상추, 쉑소스가 토핑된 치즈버거"));
         burgers.addMenu(new MenuItem(2, " SmokeShack ", 8.9, "베이컨, 체리 페퍼에 쉑소스가 토핑된 치즈버거"));
@@ -21,9 +21,9 @@ public class KioskMain {
 
         Kiosk kiosk = new Kiosk();
 
-        kiosk.addCategory("Burgers", burgers);
-        kiosk.addCategory("Drinks", drinks);
-        kiosk.addCategory("Desserts", desserts);
+        kiosk.addCategory(burgers);
+        kiosk.addCategory(drinks);
+        kiosk.addCategory(desserts);
 
         kiosk.start();
     }
