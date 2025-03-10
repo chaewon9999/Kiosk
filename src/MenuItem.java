@@ -1,5 +1,6 @@
 public class MenuItem {
 
+    // 이름, 가격, 설명 필드 선언하여 관리
     private int id;
     private String productName;
     private double price;

@@ -1,10 +1,12 @@
 public class KioskMain {
 
     public static void main(String[] args) {
+        // Menu 객체 생성하면서 카테고리 이름 설정
         Menu burgers = new Menu("Burgers");
         Menu drinks = new Menu("Drinks");
         Menu desserts = new Menu("Desserts");
 
+        // Menu 클래스 내 있는 List<MenuItem> 에 MenuItem 객체 생성하면서 삽입
         burgers.addMenu(new MenuItem(1, "shackBurgur", 6.9, "토마토, 양상추, 쉑소스가 토핑된 치즈버거"));
         burgers.addMenu(new MenuItem(2, " SmokeShack ", 8.9, "베이컨, 체리 페퍼에 쉑소스가 토핑된 치즈버거"));
         burgers.addMenu(new MenuItem(3, "Cheeseburger", 6.9, "포테이토 번과 비프패티, 치즈가 토핑된 치즈버거"));
@@ -19,12 +21,14 @@ public class KioskMain {
         desserts.addMenu(new MenuItem(2, "    Fries   ", 4.9, "바삭하고 담백한 크링클 컷 프라이"));
         desserts.addMenu(new MenuItem(3, "   Hot dog  ", 5.1, "비프 소시지와 포테이토 번을 사용한 핫도그"));
 
+        // Kiosk 객체 생성
         Kiosk kiosk = new Kiosk();
 
         kiosk.addCategory(burgers);
         kiosk.addCategory(drinks);
         kiosk.addCategory(desserts);
 
+        // Kiosk 내 시작하는 함수 호출
         kiosk.start();
     }
 }

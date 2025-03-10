@@ -3,7 +3,10 @@ import java.util.List;
 
 public class Menu {
 
+    // 카테고리 이름 필드 추가
     private String name;
+
+    // MenuItem 클래스를 List로 관리
     private List<MenuItem> menu = new ArrayList<>();
 
     public Menu(String name) {
@@ -14,6 +17,7 @@ public class Menu {
         menu.add(menuItem);
     }
 
+    // List에 포함된 MenuItem을 순차적으로 보여주는 함수
     public List<MenuItem> getMenu() {
         return menu;
     }
@@ -22,6 +26,8 @@ public class Menu {
     public String toString() {
         return name;
     }
+
+    // List를 리턴하는 함수
 }
 
 
