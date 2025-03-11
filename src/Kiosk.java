@@ -15,54 +15,46 @@ public class Kiosk {
 
             // List와 Menu 클래스 활용하여 상위 카테고리 메뉴 출력
             System.out.println("[MAIN MENU]");
-
             for (int i = 0; i < category.size(); i++) {
                 System.out.println((i + 1) + ". " + category.get(i));
             }
-
             System.out.print("0. 종료\n입력: ");
 
             // 숫자 검증
-            String inputCategory = scanner.nextLine();
-            if (isNotNumber(inputCategory)){
+            String choiceCategory = scanner.nextLine();
+            if (isNotNumber(choiceCategory)){
                 continue;
             }
-            int categoryNumber = Integer.parseInt(inputCategory);
+            int menuNumber = Integer.parseInt(choiceCategory);
 
-            // 입력 받은 숫자가 올바르다면 인덱스로 활용하여 List에 접근하기
-            // Menu가 가진 List<MenuItem>을 반복문을 활용하여 햄버거 메뉴 출력
-            if (categoryNumber == 0) {
+            //입력받은 카테고리의 세부 메뉴 호출
+            if (menuNumber == 0) {
                 System.out.println("프로그램을 종료합니다.");
                 break;
             }
 
-            Menu menu = category.get(categoryNumber - 1);
+            Menu menu = category.get(menuNumber - 1);
 
-            try {
-                for (int i = 0; i < menu.getMenu().size(); i++) {
-                    System.out.println(menu.getMenu().get(i));
-                }
-                System.out.println("0. 돌아가기");
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("잘못된 입력입니다 다시 입력해주세요.");
-                continue;
+            for (int i = 0; i < menu.getMenu().size(); i++) {
+                System.out.println(menu.getMenu().get(i));
             }
+            System.out.println("0. 돌아가기\n입력: ");
 
             //입력받은 숫자가 정수가 아닐 때 예외처리
-            String inputMenu = scanner.nextLine();
-            if (isNotNumber(inputMenu)) {
+            String choiceMenu = scanner.nextLine();
+            if (isNotNumber(choiceMenu)) {
                 continue;
             }
-            int choiceMenu = Integer.parseInt(inputMenu);
+            int menuItemNumber = Integer.parseInt(choiceMenu);
 
             // 입력 받은 숫자가 올바르다면 인덱스로 활용해서 Menu가 가지고 있는 List<MenuItem>에 접근하기
-            if (choiceMenu == 0) {
+            if (menuItemNumber == 0) {
                 System.out.println("이전 페이지로 돌아갑니다.");
                 continue;
             }
 
             try {
-                MenuItem menuItem = menu.getMenu().get(choiceMenu - 1);
+                MenuItem menuItem = menu.getMenu().get(menuItemNumber - 1);
                 System.out.println("[" + menuItem.getProductName() + "]" + "을 장바구니에 담으시겠습니까?");
                 System.out.println("1. 네 \n2. 아니오\n0. 돌아가기");
                 break;

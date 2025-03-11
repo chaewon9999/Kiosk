@@ -18,10 +18,6 @@ public class MenuItem {
         return id + ". | " + productName + " | ₩ " + price + " | " + description;
     }
 
-    public int getId() {
-        return id;
-    }
-
     public String getProductName() {
         return productName;
     }
