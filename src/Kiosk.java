@@ -18,7 +18,13 @@ public class Kiosk {
             for (int i = 0; i < category.size(); i++) {
                 System.out.println((i + 1) + ". " + category.get(i));
             }
-            System.out.print("0. 종료\n입력: ");
+            System.out.println("0. 종료");
+
+            if (cartIsNotNull(cart)) {
+                ordersMenu();
+            }
+
+            System.out.print("입력: ");
 
             // 숫자 검증 (정수가 아니면 continue)
             String choiceCategory = scanner.nextLine();
@@ -104,5 +110,19 @@ public class Kiosk {
             System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
         }
         return true;
+    }
+
+    boolean cartIsNotNull(List<Cart> cart) {
+        if (cart.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    void ordersMenu() {
+        System.out.println();
+        System.out.println("[ ORDER MENU ]");
+        System.out.println("4. Orders       | 장바구니를 확인 후 주문합니다.");
+        System.out.println("5. Cancel       | 진행중인 주문을 취소합니다.");
     }
 }
