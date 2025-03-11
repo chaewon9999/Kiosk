@@ -20,27 +20,33 @@ public class Kiosk {
             }
             System.out.print("0. 종료\n입력: ");
 
-            // 숫자 검증
+            // 숫자 검증 (정수가 아니면 continue)
             String choiceCategory = scanner.nextLine();
             if (isNotNumber(choiceCategory)){
                 continue;
             }
             int menuNumber = Integer.parseInt(choiceCategory);
 
-            //입력받은 카테고리의 세부 메뉴 호출
+            //입력받은 카테고리 세부 메뉴 호출
             if (menuNumber == 0) {
                 System.out.println("프로그램을 종료합니다.");
                 break;
             }
 
-            Menu menu = category.get(menuNumber - 1);
-
-            for (int i = 0; i < menu.getMenu().size(); i++) {
-                System.out.println(menu.getMenu().get(i));
+            //입력받은 숫자가 menu의 size볻 클 때 예외처리
+            Menu menu = null;
+            try {
+                menu = category.get(menuNumber - 1);
+                for (int i = 0; i < menu.getMenu().size(); i++) {
+                    System.out.println(menu.getMenu().get(i));
+                }
+                System.out.print("0. 돌아가기\n입력: ");
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("잘못된 입력입니다 다시 입력해주세요.");
+                continue;
             }
-            System.out.println("0. 돌아가기\n입력: ");
 
-            //입력받은 숫자가 정수가 아닐 때 예외처리
+            // 숫자 검증 (정수가 아니면 continue)
             String choiceMenu = scanner.nextLine();
             if (isNotNumber(choiceMenu)) {
                 continue;
@@ -53,15 +59,33 @@ public class Kiosk {
                 continue;
             }
 
+            MenuItem menuItem = null;
+            //입력받은 숫자가 menuItem의 size보다 클 때 예외처리
             try {
-                MenuItem menuItem = menu.getMenu().get(menuItemNumber - 1);
+                menuItem = menu.getMenu().get(menuItemNumber - 1);
                 System.out.println("[" + menuItem.getProductName() + "]" + "을 장바구니에 담으시겠습니까?");
-                System.out.println("1. 네 \n2. 아니오\n0. 돌아가기");
-                break;
+                System.out.print("1. 네 \n2. 아니오\n0. 돌아가기\n입력: ");
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
             }
 
+            // 숫자 검증 (정수가 아니면 continue)
+            String userChoice = scanner.nextLine();
+            if (isNotNumber(userChoice)) {
+                continue;
+            }
+            int addToCart = Integer.parseInt(userChoice);
+
+            //장바구니에 담을지 확인하는 로직
+            if (addToCart == 1) {
+                cart.add(new Cart(menuItem.getProductName(), menuItem.getPrice()));
+                System.out.println("장바구니에 " + menuItem.getProductName() + "을 추가했습니다.");
+            } else if (addToCart == 2 || addToCart == 0) {
+                continue;
+            } else{
+                System.out.println("잘못된 입력입니다.");
+                continue;
+            }
 
 
         }
