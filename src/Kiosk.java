@@ -91,7 +91,11 @@ public class Kiosk {
         }
     }
 
-    private void showMainMenu() {
+    void addCategory(Menu menu) { //카테고리 요소 추가
+        category.add(menu);
+    }
+
+    void showMainMenu() { //카테고리 보여주기
         System.out.println("[MAIN MENU]");
         for (int i = 0; i < category.size(); i++) {
             System.out.println((i + 1) + ". " + category.get(i));
@@ -99,31 +103,26 @@ public class Kiosk {
         System.out.println("0. 종료");
     }
 
-    void showOrderMenu() {
+    void showOrderMenu() { //cart가 null 값이 아닐 때 OrderMenu 보여주기
         System.out.println();
         System.out.println("[ ORDER MENU ]");
         System.out.println("4. Orders       | 장바구니를 확인 후 주문합니다.");
         System.out.println("5. Cancel       | 진행중인 주문을 취소합니다.");
     }
 
-    void addCategory(Menu menu) {
-        category.add(menu);
+    boolean cartIsNotNull(List<Cart> cart) { //카트가 비어있는지 확인
+        if (cart.isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
-    /**정수인지 확인**/
-    boolean isNotNumber(String input) {
+    boolean isNotNumber(String input) { //입력받은 숫자가 정수인지 확인
         try {
             int number = Integer.parseInt(input);
             return false; //가독성을 위해 숫자가 맞다면 false를 반환해줬습니다.
         } catch (NumberFormatException e) {
             System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
-        }
-        return true;
-    }
-
-    boolean cartIsNotNull(List<Cart> cart) {
-        if (cart.isEmpty()) {
-            return false;
         }
         return true;
     }
