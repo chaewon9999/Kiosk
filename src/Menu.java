@@ -27,7 +27,6 @@ public class Menu {
         return name;
     }
 
-    // List를 리턴하는 함수
 }
 
 
