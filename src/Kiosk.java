@@ -3,6 +3,7 @@ import java.util.*;
 public class Kiosk {
 
     List<Menu> category = new ArrayList<>();
+    List<Cart> cart = new ArrayList<>();
 
     void start() {
 
@@ -42,33 +43,49 @@ public class Kiosk {
                 break;
             }
 
+            Menu menu = category.get(categoryNumber - 1);
+
             try {
-                Menu menu = category.get(categoryNumber - 1);
                 for (int i = 0; i < menu.getMenu().size(); i++) {
                     System.out.println(menu.getMenu().get(i));
                 }
                 System.out.println("0. 돌아가기");
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("잘못된 입력입니다 다시 입력해주세요.");
+                continue;
             }
 
             // 숫자 입력 받기
             int choiceMenu = 0;
 
-            // 입력 받은 숫자가 올바르다면 인덱스로 활용해서 Menu가 가지고 있는 List<MenuItem>에 접근하기
+            //입력받은 숫자가 정수가 아닐 때 예외처리
             while(true) {
                 try{
                     choiceMenu = Integer.valueOf(scanner.nextLine());
                     break;
                 } catch (NumberFormatException e) {
                     System.out.print("잘못된 입력입니다. 다시 입력해주세요: ");
-                    continue;
                 }
             }
+
+            // 입력 받은 숫자가 올바르다면 인덱스로 활용해서 Menu가 가지고 있는 List<MenuItem>에 접근하기
             if (choiceMenu == 0) {
                 System.out.println("이전 페이지로 돌아갑니다.");
                 continue;
             }
+
+            try {
+
+                MenuItem menuItem = menu.getMenu().get(choiceMenu - 1);
+                System.out.println("[" + menuItem.getProductName() + "]" + "을 장바구니에 담으시겠습니까?");
+                System.out.println("1. 네 \n2. 아니오\n0. 돌아가기");
+                break;
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+                continue;
+            }
+
+
 
         }
     }
