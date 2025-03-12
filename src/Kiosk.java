@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class Kiosk {
 
@@ -12,10 +13,11 @@ public class Kiosk {
         // 반복문 시작
         while (true) {
 
-            // List와 Menu 클래스 활용하여 상위 카테고리 메뉴 출력, cart가 null이 아니라면 orderMenu 출력
+            // List와 Menu 클래스 활용하여 상위 카테고리 메뉴 출력
             showMainMenu();
 
-            if (cartIsNotNull(cart)) {
+            // cart가 null이 아니라면 orderMenu 출력
+            if (IsNotNull(cart)) {
                 showOrderMenu();
             }
             System.out.print("입력: ");
@@ -31,6 +33,19 @@ public class Kiosk {
             if (chosenCategory == 0) {
                 System.out.println("프로그램을 종료합니다.");
                 break;
+            }
+
+            if (chosenCategory == 4) {
+                System.out.println("[Order]");
+                for (int i = 0; i < cart.size(); i++) {
+                    System.out.println((i + 1) + ". " + cart.get(i));
+                }
+                continue;
+            }
+
+            if (chosenCategory == 5) {
+                cart.clear();
+                continue;
             }
 
             //입력받은 숫자가 menu의 size볻 클 때 예외처리
@@ -97,20 +112,19 @@ public class Kiosk {
 
     void showMainMenu() { //카테고리 보여주기
         System.out.println("[MAIN MENU]");
-        for (int i = 0; i < category.size(); i++) {
-            System.out.println((i + 1) + ". " + category.get(i));
-        }
+        IntStream.range(0, category.size())
+                .mapToObj(i -> (i + 1) + ". " + category.get(i))
+                .forEach(System.out::println);
         System.out.println("0. 종료");
     }
 
     void showOrderMenu() { //cart가 null 값이 아닐 때 OrderMenu 보여주기
-        System.out.println();
         System.out.println("[ ORDER MENU ]");
         System.out.println("4. Orders       | 장바구니를 확인 후 주문합니다.");
-        System.out.println("5. Cancel       | 진행중인 주문을 취소합니다.");
+        System.out.println("5. Cancel       | 장바구니를 비웁니다.");
     }
 
-    boolean cartIsNotNull(List<Cart> cart) { //카트가 비어있는지 확인
+    boolean IsNotNull(List<Cart> cart) { //카트가 비어있는지 확인
         if (cart.isEmpty()) {
             return false;
         }
