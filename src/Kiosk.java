@@ -36,11 +36,40 @@ public class Kiosk {
             }
 
             if (chosenCategory == 4) {
+                int totalAmount = 0;
+                System.out.println("아래와 같이 주문하겠습니까?");
                 System.out.println("[Order]");
                 for (int i = 0; i < cart.size(); i++) {
                     System.out.println((i + 1) + ". " + cart.get(i));
+                    totalAmount += cart.get(i).price;
                 }
-                continue;
+                System.out.println("[Total]\n₩ " + totalAmount);
+                System.out.print("1. 주문하기 2. 돌아가기\n입력: ");
+
+                String orderChoice = scanner.nextLine();
+                if (isNotNumber(orderChoice)) {
+                    continue;
+                }
+                int chosenOrder = Integer.parseInt(orderChoice);
+
+                if (chosenOrder == 1) {
+                    System.out.println("할인 정보를 입력해주세요");
+                    for (DiscountPercent value : DiscountPercent.values()) {
+                        value.toString();
+                    }
+                    String discountChoice = scanner.nextLine();
+                    if (isNotNumber(discountChoice)) {
+                        continue;
+                    }
+                    int chosenDiscount = Integer.parseInt(discountChoice);
+
+                } else if (chosenOrder == 2) {
+                    System.out.println("메뉴 화면으로 돌아갑니다");
+                    continue;
+                } else {
+                    System.out.println("잘못된 입력입니다.");
+                    continue;
+                }
             }
 
             if (chosenCategory == 5) {
