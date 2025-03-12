@@ -3,8 +3,8 @@
  */
 public class ShoppingCart {
 
-    String name;
-    double price;
+    private String name;
+    private double price;
 
     public ShoppingCart(String name, double price) {
         this.name = name;
@@ -14,5 +14,9 @@ public class ShoppingCart {
     @Override
     public String toString() {
         return name + " ₩ " + price;
+    }
+
+    public double getPrice() {
+        return price;
     }
 }

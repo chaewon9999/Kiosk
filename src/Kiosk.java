@@ -3,8 +3,8 @@ import java.util.stream.IntStream;
 
 public class Kiosk {
 
-    List<Menu> category = new ArrayList<>();
-    List<ShoppingCart> cart = new ArrayList<>();
+    private List<Menu> category = new ArrayList<>();
+    private List<ShoppingCart> cart = new ArrayList<>();
 
     void start() {
 
@@ -191,7 +191,7 @@ public class Kiosk {
         System.out.println("[Order]");
         for (int i = 0; i < cart.size(); i++) {
             System.out.println((i + 1) + ". " + cart.get(i));
-            totalAmount += cart.get(i).price;
+            totalAmount += cart.get(i).getPrice();
         }
         System.out.println("[Total]\n₩ " + String.format("%.2f", totalAmount));
         System.out.print("1. 주문하기 2. 돌아가기\n입력: ");
