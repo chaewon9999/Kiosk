@@ -36,7 +36,8 @@ public class Kiosk {
             }
 
             if (chosenCategory == 4) {
-                int totalAmount = 0;
+                //카트에 들어있는 품목 보여준 후 주문할지 물어보기
+                double totalAmount = 0;
                 System.out.println("아래와 같이 주문하겠습니까?");
                 System.out.println("[Order]");
                 for (int i = 0; i < cart.size(); i++) {
@@ -46,23 +47,34 @@ public class Kiosk {
                 System.out.println("[Total]\n₩ " + totalAmount);
                 System.out.print("1. 주문하기 2. 돌아가기\n입력: ");
 
+                // 숫자 검증 (정수가 아니면 continue)
                 String orderChoice = scanner.nextLine();
                 if (isNotNumber(orderChoice)) {
                     continue;
                 }
                 int chosenOrder = Integer.parseInt(orderChoice);
 
+                //1번 선택 시 계산 로직 실행
                 if (chosenOrder == 1) {
                     System.out.println("할인 정보를 입력해주세요");
-                    for (DiscountPercent value : DiscountPercent.values()) {
-                        value.toString();
+                    for (DiscountPercent value : DiscountPercent.values()) { //enum을 통해 할인율 보여주기
+                        System.out.println(value.toString());
                     }
+                    System.out.print("입력: ");
+
+                    // 숫자 검증 (정수가 아니면 continue)
                     String discountChoice = scanner.nextLine();
                     if (isNotNumber(discountChoice)) {
                         continue;
                     }
                     int chosenDiscount = Integer.parseInt(discountChoice);
 
+                    //최종 결제금액 출력
+                    double discountAmount = DiscountPercent.values()[chosenDiscount - 1].getDiscountAmount(totalAmount);
+                    System.out.println("주문이 완료되었습니다. 금액은 ₩" + discountAmount + " 입니다.");
+                    break;
+
+                    //2번이나 다른 번호 입력시 다시 메뉴 화면으로 되돌아가기
                 } else if (chosenOrder == 2) {
                     System.out.println("메뉴 화면으로 돌아갑니다");
                     continue;
@@ -72,6 +84,7 @@ public class Kiosk {
                 }
             }
 
+            //5번 선택시 장바구니 비우기
             if (chosenCategory == 5) {
                 cart.clear();
                 continue;

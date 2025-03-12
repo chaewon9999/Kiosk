@@ -15,13 +15,13 @@ public enum DiscountPercent {
         this.discountPercent = discountPercent;
     }
 
-    int getDiscountPercent(int totalAmount) {
-        return totalAmount - (totalAmount * discountPercent);
+    double getDiscountAmount(double totalAmount) {
+        return totalAmount - (totalAmount * discountPercent / 100);
     }
 
 
     @Override
     public String toString() {
-        return id + ". " + name + discountPercent + "%";
+        return id + ". " + name + " " + discountPercent + "%";
     }
 }
