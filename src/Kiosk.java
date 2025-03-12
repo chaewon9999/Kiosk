@@ -95,7 +95,7 @@ public class Kiosk {
                     int chosenDiscount = Integer.parseInt(discountChoice);
 
                     //최종 결제금액 출력
-                    double discountAmount = DiscountPercent.values()[chosenDiscount - 1].getDiscountAmount(totalAmount);
+                    String discountAmount = DiscountPercent.values()[chosenDiscount - 1].getDiscountAmount(totalAmount);
                     System.out.println("주문이 완료되었습니다. 금액은 ₩" + discountAmount + " 입니다.");
                     break;
 
@@ -191,7 +191,7 @@ public class Kiosk {
             System.out.println((i + 1) + ". " + cart.get(i));
             totalAmount += cart.get(i).price;
         }
-        System.out.println("[Total]\n₩ " + totalAmount);
+        System.out.println("[Total]\n₩ " + String.format("%.2f", totalAmount));
         System.out.print("1. 주문하기 2. 돌아가기\n입력: ");
         return totalAmount;
     }

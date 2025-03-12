@@ -18,8 +18,9 @@ public enum DiscountPercent {
         this.discountPercent = discountPercent;
     }
 
-    double getDiscountAmount(double totalAmount) {
-        return totalAmount - (totalAmount * discountPercent / 100);
+    String getDiscountAmount(double totalAmount) {
+        double totalAmountGet = totalAmount - (totalAmount * discountPercent / 100);
+        return String.format("%.2f", totalAmountGet);
     }
 
     @Override
