@@ -10,11 +10,11 @@ Oracle OpenJDK 23.0.1
 
 - 주요기능
 
-Main : 시작 지점이 되는 클래스, public static void main(String[] args)
-MenuItem: 세부 메뉴 속성 가지는 클래스 
-Kiosk: 프로그램 순서 및 흐름 제어를 담당하는 클래스
-Menu: MenuItem 클래스를 관리하는 클래스
-DiscountPercent: enum을 통해 할인율을 관리하는 클래스
+Main : 시작 지점이 되는 클래스, public static void main(String[] args)<br>
+MenuItem: 세부 메뉴 속성 가지는 클래스 <br>
+Kiosk: 프로그램 순서 및 흐름 제어를 담당하는 클래스<br>
+Menu: MenuItem 클래스를 관리하는 클래스<br>
+DiscountPercent: enum을 통해 할인율을 관리하는 클래스<br>
 ShoppingCart: 사용자 입력을 통해 받은 주문을 저장해놓는 클래스
 
 - 트러블슈팅 및 느낀점
