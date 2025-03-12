@@ -28,7 +28,6 @@ public class KioskMain {
         kiosk.addCategory(drinks);
         kiosk.addCategory(desserts);
 
-        // Kiosk 내 시작하는 함수 호출
         kiosk.start();
     }
 }

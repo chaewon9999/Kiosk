@@ -1,3 +1,6 @@
+/**
+ * 할인율 관리
+ */
 public enum DiscountPercent {
 
     NATIONAL_MERIT(1,"국가유공자", 10),
@@ -18,7 +21,6 @@ public enum DiscountPercent {
     double getDiscountAmount(double totalAmount) {
         return totalAmount - (totalAmount * discountPercent / 100);
     }
-
 
     @Override
     public String toString() {
