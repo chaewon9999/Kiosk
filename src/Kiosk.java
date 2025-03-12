@@ -109,12 +109,14 @@ public class Kiosk {
                 }
             }
 
+            //5를 입력받으면 장바구니 비우기
             if (chosenCategory == 5) {
                 cart.clear();
                 System.out.println("장바구니를 비웠습니다.");
                 continue;
             }
 
+            //0을 입력받으면 프로그램 종료
             if (chosenCategory == 0) {
                 System.out.println("프로그램을 종료합니다.");
                 break;
