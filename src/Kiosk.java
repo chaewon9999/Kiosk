@@ -21,44 +21,44 @@ public class Kiosk {
 
             System.out.print("입력: ");
 
-            // 숫자인지 검증
-            String categoryChoice = scanner.nextLine();
-            if (isNotNumber(categoryChoice)){
+            // 입력받은 값이 숫자인지 검증
+            String input = scanner.nextLine();
+            if (isNotNumber(input)){
                 continue;
             }
-            int chosenCategory = Integer.parseInt(categoryChoice);
+            int category = Integer.parseInt(input);
 
             //입력받은 카테고리 숫자에 따라 세부 메뉴 호출
-            if (chosenCategory == 1 || chosenCategory == 2 || chosenCategory == 3) {
+            if (category == 1 || category == 2 || category == 3) {
 
-                Menu menu = showMenu(chosenCategory);
+                Menu menu = showMenu(category);
 
                 //숫자인지 검증
-                String menuChoice = scanner.nextLine();
-                if (isNotNumber(menuChoice)) {
+                input = scanner.nextLine();
+                if (isNotNumber(input)) {
                     continue;
                 }
-                int chosenMenu = Integer.parseInt(menuChoice);
+                int menuChoice = Integer.parseInt(input);
 
-                if (chosenMenu == 0) {
+                if (menuChoice == 0) {
                     System.out.println("이전 페이지로 돌아갑니다.");
                     continue;
                 }
 
                 //입력받은 숫자가 menuItem의 size보다 클 때 예외처리
-                MenuItem menuItem = chosenMenu(menu, chosenMenu);
+                MenuItem menuItem = chosenMenu(menu, menuChoice);
 
-                // 숫자인지 검증
-                String userChoice = scanner.nextLine();
-                if (isNotNumber(userChoice)) {
+                // 입력받은 값이 숫자인지 검증
+                input = scanner.nextLine();
+                if (isNotNumber(input)) {
                     continue;
                 }
-                int addToCart = Integer.parseInt(userChoice);
+                int cartChoice = Integer.parseInt(input);
 
                 //입력받은 값에 따라 장바구니에 선택한 메뉴 추가
-                if (addToCart == 1) {
+                if (cartChoice == 1) {
                     addToCart(menuItem);
-                } else if (addToCart == 2 || addToCart == 0) {
+                } else if (cartChoice == 2 || cartChoice == 0) {
                     System.out.println("메인 메뉴로 돌아갑니다.");
                     continue;
                 } else {
@@ -69,38 +69,38 @@ public class Kiosk {
             }
 
             //카트에 들어있는 품목 보여준 후 주문할지 물어보기
-            if (chosenCategory == 4) {
+            if (category == 4) {
                 double totalAmount = showOrder();
 
-                // 숫자인지 검증
-                String orderChoice = scanner.nextLine();
-                if (isNotNumber(orderChoice)) {
+                // 입력받은 값이 숫자인지 검증
+                input = scanner.nextLine();
+                if (isNotNumber(input)) {
                     continue;
                 }
-                int chosenOrder = Integer.parseInt(orderChoice);
+                int orderDecision = Integer.parseInt(input);
 
                 //1번 선택 시 계산 로직 실행
-                if (chosenOrder == 1) {
+                if (orderDecision == 1) {
                     System.out.println("할인 정보를 입력해주세요");
                     for (DiscountPercent value : DiscountPercent.values()) { //enum을 통해 할인율 보여주기
                         System.out.println(value.toString());
                     }
                     System.out.print("입력: ");
 
-                    // 숫자인지 검증
-                    String discountChoice = scanner.nextLine();
-                    if (isNotNumber(discountChoice)) {
+                    // 입력받은 값이 숫자인지 검증
+                    input = scanner.nextLine();
+                    if (isNotNumber(input)) {
                         continue;
                     }
-                    int chosenDiscount = Integer.parseInt(discountChoice);
+                    int discountOption = Integer.parseInt(input);
 
                     //최종 결제금액 출력
-                    String discountAmount = DiscountPercent.values()[chosenDiscount - 1].getDiscountAmount(totalAmount);
+                    String discountAmount = DiscountPercent.values()[discountOption - 1].getDiscountAmount(totalAmount);
                     System.out.println("주문이 완료되었습니다. 금액은 ₩" + discountAmount + " 입니다.");
                     break;
 
                     //2번이나 다른 번호 입력시 다시 메뉴 화면으로 되돌아가기
-                } else if (chosenOrder == 2) {
+                } else if (orderDecision == 2) {
                     System.out.println("메뉴 화면으로 돌아갑니다");
                     continue;
                 } else {
@@ -110,14 +110,14 @@ public class Kiosk {
             }
 
             //5를 입력받으면 장바구니 비우기
-            if (chosenCategory == 5) {
+            if (category == 5) {
                 cart.clear();
                 System.out.println("장바구니를 비웠습니다.");
                 continue;
             }
 
             //0을 입력받으면 프로그램 종료
-            if (chosenCategory == 0) {
+            if (category == 0) {
                 System.out.println("프로그램을 종료합니다.");
                 break;
             }
